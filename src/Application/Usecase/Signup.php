@@ -9,16 +9,14 @@ use Src\Domain\Entity\User;
 
 class Signup
 {
-    public function __construct(private UserRepository $userRepository)
-    {
-    }
+    public function __construct(private UserRepository $userRepository) { }
 
     /**
      * @param object{name: string, email: string, password: string, age: int} $input
      */
     public function execute(object $input): void
     {
-        $user = new User($input->name, $input->email, $input->password, $input->age);
+        $user = User::create($input->name, $input->email, $input->password, $input->age);
         $this->userRepository->save($user);
     }
 }

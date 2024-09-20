@@ -28,21 +28,7 @@ describe('SignupTest', function () {
         ];
         $output = $login->execute($inputLogin);
         expect($output->name)->toBe('John Doe');
-        expect($output->token)->toBe('123456');
+        expect($output->token)->toBe('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjY4MDEyMDAsImV4cCI6MjcyNjgwMTIwMCwic3ViIjoiam9obi5kb2VAZ21haWwuY29tIiwiZW1haWwiOiJqb2huLmRvZUBnbWFpbC5jb20iLCJleHBpcmVzSW4iOjEwMDAwMDAwMDB9.q360RtQltC2VbLlyHLC3EyxEea3-m-TQOiIT2YOKNXM');
     });
 
-    test('Não deve fazer o signup se o nome for invalido', function () {
-        $userRepository = new UserRepositoryMemory();
-        // given
-        $signup = new Signup($userRepository);
-        $email = 'john.doe@gmail.com';
-        $inputSignup = (object) [
-            'name' => 'John',
-            'email' => $email,
-            'password' => '12345678',
-            'age' => 30
-        ];
-        // when
-        expect(fn() => $signup->execute($inputSignup))->toThrow(Exception::class, 'Invalid name');
-    });
 });

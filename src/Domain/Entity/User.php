@@ -6,23 +6,48 @@ namespace Src\Domain\Entity;
 
 class User
 {
-    public function __construct(
-        public readonly string $name,
-        public readonly string $email,
-        public readonly string $password,
+    private function __construct(
+        public readonly Name $name,
+        public readonly Email $email,
+        public readonly Password $password,
         public readonly int $age
     ) {
-        if (count(explode(' ', $name)) < 2) {
-            throw new \Exception('Invalid name');
-        }
-        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new \Exception('Invalid email');
-        }
-        if (strlen($password) < 8) {
-            throw new \Exception('Invalid password');
-        }
         if ($age < 18) {
-            throw new \Exception('Invalid age');
+            throw new \DomainException('Invalid age');
         }
+    }
+
+    public static function create(
+        string $name,
+        string $email,
+        string $password,
+        int $age
+    ): self {
+        return new self(new Name($name), new Email($email), Password::create($password), $age);
+    }
+
+    public static function buildExistingUser ( string $name, string $email, string $hashPassword, int $age): self
+    {
+        return new self(new Name($name), new Email($email), Password::create($hashPassword), $age);
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email->getValue();
+    }
+
+    public function getName(): string
+    {
+        return $this->name->getValue();
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password->value;
+    }
+
+    public function validatePassword(string $password): bool
+    {
+        return $this->password->validate($password);
     }
 }

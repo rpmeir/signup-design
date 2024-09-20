@@ -19,21 +19,16 @@ class UserRepositoryMemory implements UserRepository
         $this->users = [];
     }
 
-    /**
-     * @param object{name: string, email: string, password: string, age: int} $input
-     */
-    public function save(object $input): void
+    public function save(User $user): void
     {
-        $this->users[] = new User(
-            $input->name,
-            $input->email,
-            $input->password,
-            $input->age
-        );
+        $this->users[] = $user;
     }
 
     public function getByEmail(string $email): ?User
     {
-        return $this->users[array_search($email, array_column($this->users, 'email'))];
+        $filtered = array_filter($this->users, function (User $user) use ($email) {
+            return $user->email->getValue() === $email;
+        });
+        return array_pop($filtered);
     }
 }
