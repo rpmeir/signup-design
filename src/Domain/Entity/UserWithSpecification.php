@@ -21,7 +21,7 @@ class UserWithSpecification
         $emailSpecification = new UserEmailSpecification();
         $passwordSpecification = new UserPasswordSpecification();
         $ageSpecification = new UserAgeSpecification();
-        if(!$nameSpecification
+        if (! $nameSpecification
             ->and($emailSpecification)
             ->and($passwordSpecification)
             ->and($ageSpecification)

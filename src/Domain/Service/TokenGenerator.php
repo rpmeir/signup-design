@@ -26,7 +26,12 @@ class TokenGenerator
         return JWT::encode($payload, $this->secret, 'HS256');
     }
 
-    public function verify(string $token): object
+    /**
+     * Summary of verify
+     *
+     * @return \stdClass{iat: int, exp: int, sub: string, email: string, expiresIn: int}
+     */
+    public function verify(string $token): \stdClass
     {
         return JWT::decode($token, new Key($this->secret, 'HS256'));
     }

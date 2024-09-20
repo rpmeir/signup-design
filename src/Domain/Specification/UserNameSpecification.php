@@ -10,6 +10,6 @@ class UserNameSpecification extends AbstractSpecification
 {
     public function isSatisfiedBy(User $user): bool
     {
-        return count(explode(' ', $user->name)) >= 2;
+        return count(explode(' ', $user->getName())) >= 2;
     }
 }

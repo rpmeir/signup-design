@@ -16,7 +16,7 @@ $inputSignup = (object) [
     'name' => 'John Doe',
     'email' => $email,
     'password' => '12345678',
-    'age' => 30
+    'age' => 30,
 ];
 // when
 $signup->execute($inputSignup);
@@ -24,6 +24,6 @@ $signup->execute($inputSignup);
 $login = new Login($userRepository);
 $inputLogin = (object) [
     'email' => $email,
-    'password' => '12345678'
+    'password' => '12345678',
 ];
 $output = $login->execute($inputLogin);

@@ -10,6 +10,6 @@ class UserPasswordSpecification extends AbstractSpecification
 {
     public function isSatisfiedBy(User $user): bool
     {
-        return strlen($user->password) >= 8;
+        return strlen($user->getPassword()) >= 8;
     }
 }

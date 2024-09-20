@@ -26,7 +26,7 @@ class User
         return new self(new Name($name), new Email($email), Password::create($password), $age);
     }
 
-    public static function buildExistingUser ( string $name, string $email, string $hashPassword, int $age): self
+    public static function buildExistingUser(string $name, string $email, string $hashPassword, int $age): self
     {
         return new self(new Name($name), new Email($email), Password::create($hashPassword), $age);
     }

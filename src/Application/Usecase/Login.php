@@ -21,9 +21,13 @@ class Login
     public function execute(object $input): object
     {
         $user = $this->userRepository->getByEmail($input->email);
-        if ($user === null) { throw new \Exception('Email or Password Incorrect'); }
+        if ($user === null) {
+            throw new \Exception('Email or Password Incorrect');
+        }
         $isValidPassword = $user->validatePassword($input->password);
-        if (!$isValidPassword) { throw new \Exception('Email or Password Incorrect'); }
+        if (! $isValidPassword) {
+            throw new \Exception('Email or Password Incorrect');
+        }
         $tokenGenerator = new TokenGenerator('secret');
         $token = $tokenGenerator->generate($user, 1000000000, new \DateTimeImmutable('2024-09-20T00:00:00'));
         return (object) [

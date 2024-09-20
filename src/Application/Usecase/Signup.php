@@ -9,7 +9,9 @@ use Src\Domain\Entity\User;
 
 class Signup
 {
-    public function __construct(private UserRepository $userRepository) { }
+    public function __construct(private UserRepository $userRepository)
+    {
+    }
 
     /**
      * @param object{name: string, email: string, password: string, age: int} $input

@@ -23,5 +23,4 @@ class Password
     {
         return password_verify($value, $this->value);
     }
-
 }

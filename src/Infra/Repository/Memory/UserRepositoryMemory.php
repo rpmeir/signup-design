@@ -26,7 +26,7 @@ class UserRepositoryMemory implements UserRepository
 
     public function getByEmail(string $email): ?User
     {
-        $filtered = array_filter($this->users, function (User $user) use ($email) {
+        $filtered = array_filter($this->users, static function (User $user) use ($email) {
             return $user->email->getValue() === $email;
         });
         return array_pop($filtered);
