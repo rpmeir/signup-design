@@ -15,7 +15,7 @@ class User
         if (count(explode(' ', $name)) < 2) {
             throw new \Exception('Invalid name');
         }
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \Exception('Invalid email');
         }
         if (strlen($password) < 8) {

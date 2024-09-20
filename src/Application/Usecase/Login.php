@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Src\Application\Usecase;
+
 use Src\Application\Repository\UserRepository;
 
 class Login
@@ -13,6 +14,7 @@ class Login
 
     /**
      * @param object{email: string, password: string} $input
+     *
      * @return object{name: string, token: string}
      */
     public function execute(object $input): object
@@ -26,7 +28,7 @@ class Login
         }
         return (object) [
             'name' => $user->name,
-            'token' => '123456'
+            'token' => '123456',
         ];
     }
 }

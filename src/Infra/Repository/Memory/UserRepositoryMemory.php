@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Src\Infra\Repository\Memory;
+
 use Src\Application\Repository\UserRepository;
 use Src\Domain\Entity\User;
 

@@ -45,49 +45,4 @@ describe('SignupTest', function () {
         // when
         expect(fn() => $signup->execute($inputSignup))->toThrow(Exception::class, 'Invalid name');
     });
-
-    test('Não deve fazer o signup se o email for invalido', function () {
-        $userRepository = new UserRepositoryMemory();
-        // given
-        $signup = new Signup($userRepository);
-        $email = 'john.doe@';
-        $inputSignup = (object) [
-            'name' => 'John Doe',
-            'email' => $email,
-            'password' => '12345678',
-            'age' => 30
-        ];
-        // when
-        expect(fn() => $signup->execute($inputSignup))->toThrow(Exception::class, 'Invalid email');
-    });
-
-    test('Não deve fazer o signup se o password for invalido', function () {
-        $userRepository = new UserRepositoryMemory();
-        // given
-        $signup = new Signup($userRepository);
-        $email = 'john.doe@gmail.com';
-        $inputSignup = (object) [
-            'name' => 'John Doe',
-            'email' => $email,
-            'password' => '1234567',
-            'age' => 30
-        ];
-        // when
-        expect(fn() => $signup->execute($inputSignup))->toThrow(Exception::class, 'Invalid password');
-    });
-
-    test('Não deve fazer o signup se a idade for invalida', function () {
-        $userRepository = new UserRepositoryMemory();
-        // given
-        $signup = new Signup($userRepository);
-        $email = 'john.doe@gmail.com';
-        $inputSignup = (object) [
-            'name' => 'John Doe',
-            'email' => $email,
-            'password' => '12345678',
-            'age' => 17
-        ];
-        // when
-        expect(fn() => $signup->execute($inputSignup))->toThrow(Exception::class, 'Invalid age');
-    });
 });

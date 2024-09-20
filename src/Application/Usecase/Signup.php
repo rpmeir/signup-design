@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Src\Application\Usecase;
+
 use Src\Application\Repository\UserRepository;
 use Src\Domain\Entity\User;
 
@@ -14,7 +15,6 @@ class Signup
 
     /**
      * @param object{name: string, email: string, password: string, age: int} $input
-     * @return void
      */
     public function execute(object $input): void
     {
